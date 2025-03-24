@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Russ Design Co.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            color: #222;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+
+        .contact-methods {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .burger {
+            position: fixed;
+            top: 15px;
+            left: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .burger.active {
+            color: white;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #333;
+            color: white;
+            padding: 60px 20px 20px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-menu.active {
+            left: 0;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 15px 0;
+            font-size: 1.2em;
+        }
+
+        .nav-menu a:hover {
+            color: #ddd;
+        }
+
+        .contact-info {
+            margin-top: 40px;
+        }
+
+        .contact-info p {
+            font-size: 1.2em;
+            margin-bottom: 10px; /* Reduced spacing between phone and email */
+        }
+
+        #phone-number, #email-address {
+            font-family: 'Courier New', monospace;
+            font-size: 1.5em;
+            color: #222;
+            letter-spacing: 2px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        #phone-number {
+            width: calc(1.5em * 10 + 2px * 9); /* 10 digits + letter spacing */
+        }
+
+        #email-address {
+            width: calc(1.5em * 19 + 2px * 18); /* 19 characters + letter spacing */
+        }
+    </style>
+</head>
+<body>
+    <div class="burger">☰</div>
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="container">
+        <h1>Contact</h1>
+        <div class="contact-methods">text call or email me here: </div>
+        <div class="contact-info">
+        </div><align="center"></align>
+            <p id="phone-number">2155955012</p>
+        </div>
+        </div><align="right"></align>
+            <p id="email-address">Brennonruss@gmail.com</p>
+        </div>
+    </div>
+
+    <script>
+        const burger = document.querySelector('.burger');
+        const navMenu = document.querySelector('.nav-menu');
+        const phoneElement = document.querySelector('#phone-number');
+        const emailElement = document.querySelector('#email-address');
+        const phoneText = "2155955012";
+        const emailText = "Brennonruss@gmail.com";
+        const phoneCharacters = "0123456789"; // Only numbers for phone
+        const emailCharacters = "abcdefghijklmnopqrstuvwxyz@."; // Letters, @, and . for email
+
+        burger.addEventListener('click', (e) => {
+            navMenu.classList.toggle('active');
+            burger.classList.toggle('active');
+            e.stopPropagation();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !burger.contains(e.target) && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                burger.classList.remove('active');
+            }
+        });
+
+        function runScrambleSequence(element, finalText, characters) {
+            let currentText = finalText.split('');
+            let scrambleIntervals = Array(finalText.length).fill(null);
+            let scramblingIndex = null;
+
+            // Fisher-Yates shuffle to get a random permutation of indices
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function startScrambleCycle() {
+                // Clear any existing intervals
+                for (let i = 0; i < finalText.length; i++) {
+                    if (scrambleIntervals[i]) {
+                        clearInterval(scrambleIntervals[i]);
+                        scrambleIntervals[i] = null;
+                    }
+                }
+
+                // Get a random order for scrambling
+                const indices = shuffle([...Array(finalText.length).keys()]);
+
+                // Scramble each character in the random order
+                indices.forEach((index, i) => {
+                    setTimeout(() => {
+                        // Stop any previous scrambling at this index
+                        if (scrambleIntervals[index]) {
+                            clearInterval(scrambleIntervals[index]);
+                        }
+
+                        // Start scrambling this character
+                        scrambleIntervals[index] = setInterval(() => {
+                            currentText[index] = characters[Math.floor(Math.random() * characters.length)];
+                            element.textContent = currentText.join('');
+                        }, 30);
+                        scramblingIndex = index;
+
+                        // Stop scrambling after 3000ms
+                        setTimeout(() => {
+                            clearInterval(scrambleIntervals[index]);
+                            scrambleIntervals[index] = null;
+                            currentText[index] = finalText[index];
+                            element.textContent = currentText.join('');
+                            scramblingIndex = null;
+                        }, 3000); // Scramble duration
+                    }, i * 3000); // 3000ms per character, no overlap
+                });
+
+                // Restart the cycle after all characters have scrambled
+                setTimeout(startScrambleCycle, finalText.length * 3000); // Total cycle time
+            }
+
+            // Initial start
+            startScrambleCycle();
+        }
+
+        window.addEventListener('load', () => {
+            phoneElement.textContent = phoneText;
+            emailElement.textContent = emailText;
+            runScrambleSequence(phoneElement, phoneText, phoneCharacters);
+            runScrambleSequence(emailElement, emailText, emailCharacters);
+        });
+    </script>
+</body>
+</html>

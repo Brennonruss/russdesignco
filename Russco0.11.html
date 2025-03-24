@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Helvetica, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #222;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .burger {
+            position: fixed;
+            top: 15px;
+            left: 20px;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 1001;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .burger.active {
+            color: white;
+        }
+
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background: #333;
+            color: white;
+            padding: 60px 20px 20px;
+            transition: left 0.3s ease;
+            z-index: 1000;
+        }
+
+        .nav-menu.active {
+            left: 0;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            padding: 15px 0;
+            font-size: 1.2em;
+        }
+
+        .nav-menu a:hover {
+            color: #ddd;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            width: 100%;
+            height: 375px;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.1);
+            z-index: 1;
+        }
+
+        .gallery-item img,
+        .gallery-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        .gallery-item .link-override {
+            display: block;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <div class="burger">☰</div>
+    <div class="nav-menu">
+        <a href="index.html">Home</a>
+        <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="container">
+        <h1 id="decrypt-title">russ design co.</h1>
+        <h2>Logo Design | Branding | UI/UX | Motion Design</h2>
+        <div class="gallery">
+            <div class="gallery-item">
+                <a href="https://sightreadingapp.com" target="_blank" class="link-override">
+                    <img src="https://i.imgur.com/P0bwESL.png" alt="Design 3">
+                    <div class="caption">Notes - Education</div>
+                </a>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/OKFXwg1.png" alt="Design 3">
+                <div class="caption">Seraph Supply Co. - Fashion & Beauty</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay muted loop>
+                    <source src="https://i.imgur.com/zwXQaTN.mp4" type="video/mp4">
+                </video>
+                <div class="caption">Fathoms Brewing Co. - Food & Drink</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/DOhndrh.png" alt="Design 1">
+                <div class="caption">GLXY - Professional Services</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay muted loop>
+                    <source src="https://i.imgur.com/8Y2Iez3.mp4" type="video/mp4">
+                </video>
+                <div class="caption">Orbit - Technology</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay muted loop>
+                    <source src="https://i.imgur.com/EaB1sQZ.mp4" type="video/mp4">
+                </video>
+                <div class="caption">Switches - Technology</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/JfA6arm.png" alt="Design 3">
+                <div class="caption">Carbon - Technology</div>
+            </div>
+            <div class="gallery-item">
+                <video autoplay muted loop>
+                    <source src="https://i.imgur.com/regJlod.mp4" type="video/mp4">
+                </video>
+                <div class="caption">Hugo Fuentes - Personal Branding</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/UDhW3QS.png" alt="Design 3">
+                <div class="caption">Diamond Fishing Co. - Retail</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/oihRKLZ.png" alt="Design 3">
+                <div class="caption">Play With Words - Healthcare</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/LjFmgvG.jpg" alt="Design 3">
+                <div class="caption">'The Ancient' - Arts & Entertainment</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/REGnCRU.png" alt="Design 3">
+                <div class="caption">Bucks Honey Co. - Food & Drink</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/Qpi1Fgl.png" alt="Design 4">
+                <div class="caption">H&H - Fashion & Apparel</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/WcUzm1E.png" alt="Design 5">
+                <div class="caption">Newsome's Bait & Tackle - Retail</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.imgur.com/in8bwDs.png" alt="Design 6">
+                <div class="caption">Secret Stairwell - Arts & Entertainment</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const burger = document.querySelector('.burger');
+        const navMenu = document.querySelector('.nav-menu');
+        const titleElement = document.querySelector('#decrypt-title');
+        const finalText = "russ design co.";
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+        burger.addEventListener('click', (e) => {
+            navMenu.classList.toggle('active');
+            burger.classList.toggle('active');
+            e.stopPropagation();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !burger.contains(e.target) && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                burger.classList.remove('active');
+            }
+        });
+
+        function runScrambleSequence() {
+            let currentText = Array(finalText.length).fill('');
+            let scrambleIntervals = [];
+            let index = 0;
+
+            for (let i = 0; i < finalText.length; i++) {
+                scrambleIntervals[i] = setInterval(() => {
+                    currentText[i] = characters[Math.floor(Math.random() * characters.length)];
+                    titleElement.textContent = currentText.join('');
+                }, 30);
+            }
+
+            function stopScrambling() {
+                if (index < finalText.length) {
+                    clearInterval(scrambleIntervals[index]);
+                    currentText[index] = finalText[index];
+                    titleElement.textContent = currentText.join('');
+                    index++;
+                    if (index < finalText.length) {
+                        setTimeout(stopScrambling, 200);
+                    } else {
+                        setTimeout(runScrambleSequence, 2000);
+                    }
+                }
+            }
+
+            stopScrambling();
+        }
+
+        window.addEventListener('load', () => {
+            titleElement.textContent = '';
+            runScrambleSequence();
+        });
+    </script>
+</body>
+</html>
